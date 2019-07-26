@@ -35,11 +35,13 @@ class _SensorZState extends State<SensorZ> {
     ];
     for(var i=1 ;i < map["feeds"].length ; i++){
       var x = map["feeds"][i]["field3"];
-      var y = int.parse(x);
+      if(x!=null){
+        var y = int.parse(x);
       if( y>=8){
         _showNotificationWithDefaultSound();
       }
       list.add(LinearSales(i,y));
+      }
     }
     
     var series = [charts.Series(

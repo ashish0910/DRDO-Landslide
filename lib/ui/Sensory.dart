@@ -35,11 +35,13 @@ class _SensorYState extends State<SensorY> {
     ];
     for(var i=1 ;i < map["feeds"].length ; i++){
       var x = map["feeds"][i]["field2"];
-      var y = int.parse(x);
+      if(x!=null){
+        var y = int.parse(x);
       if( y>=3){
         _showNotificationWithDefaultSound();
       }
       list.add(LinearSales(i,y));
+      }
     }
     
     var series = [charts.Series(
