@@ -31,7 +31,7 @@ class _SensorZState extends State<SensorZ> {
     var one = map["feeds"][0]["field3"];
     debugPrint(map["feeds"].length.toString());
     list = [
-      LinearSales(0, int.parse(one)),
+      LinearState(0, int.parse(one)),
     ];
     for(var i=1 ;i < map["feeds"].length ; i++){
       var x = map["feeds"][i]["field3"];
@@ -40,14 +40,14 @@ class _SensorZState extends State<SensorZ> {
       if( y>=8){
         _showNotificationWithDefaultSound();
       }
-      list.add(LinearSales(i,y));
+      list.add(LinearState(i,y));
       }
     }
     
     var series = [charts.Series(
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        id: 'Sales',
+        domainFn: (LinearState value, _) => value.time,
+        measureFn: (LinearState value, _) => value.value,
+        id: 'value',
         data: list,
       ),];
 
@@ -128,9 +128,9 @@ class _SensorZState extends State<SensorZ> {
 }
 
 /// Sample linear data type.
-class LinearSales {
-  final int year;
-  final int sales;
+class LinearState {
+  final int time;
+  final int value;
 
-  LinearSales(this.year, this.sales);
+  LinearState(this.time, this.value);
 }
